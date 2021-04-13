@@ -1,11 +1,22 @@
 import './App.css';
+import ApolloClient from 'apollo-boost';
+import {ApolloProvider} from '@apollo/react-hooks';
 
-function App() {
+import {PokemonsContainer} from './containers/PokemonsContainer';
+
+export function App() {
+  const client = new ApolloClient({
+    uri: 'https://graphql-pokemon2.vercel.app/'
+  });
+
   return (
     <div className="App">
-      <h1>PokeMon </h1>
+      <ApolloProvider client={client}>
+        <main>
+          <PokemonsContainer/>
+        </main>
+      </ApolloProvider>
     </div>
   );
 }
 
-export default App;
